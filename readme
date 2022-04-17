@@ -1,0 +1,54 @@
+Ionescu Marius-Andrei
+335CB
+
+Organizare
+
+Ca structura de date am folosit un hashmap (dictionar, nu hashtable), care practic
+are la baza o lista inlantuita cu cateva proprietati in plus: pe langa valoare, o
+celula are si cheie => pereche cheie-valoare exact ca intr-un dictionar; de asemenea,
+cand se adauga un nou element in hashmap, se verifica daca cheia exista deja si in caz
+afirmativ este sters elementul precedent si adaugat cel nou. Hashmapul l-am folosit
+strict pentru stocarea variabilelor si valorile aferente. Pentru stocarea directoarelor
+si a liniilor de cod ce urmeaza a fi scrise in fisierul de output dupa procesare, am
+folosit liste simplu inlantuite (array le-am numit, ma gandeam la arraylist). Ca
+sa prezint implementarea temei pe scurt, practic preluam argumentele de la stdin, le
+procesam (adaugare variabile/directoare/preluam fisierul de input/output) iar in caz
+de pattern error dadeam exit. Apoi urmeaza partea de procesare a fisierului de input,
+astfel adaugam in hashmap noi variabile daca era cazul (definite cu #define),
+parcurgeam toate conditiile de tip #if, #ifdef, #elif etc si in final mapam variabilele
+din cod cu ce se afla in hashmap. 
+Functionalitati importante: pentru parsarea liniilor de tip #define sau a argumentelor
+primite la stdin, practic preluam stringul si il imparteam dupa un delimitator ales,
+de exemplu '=' sau ' '. Stringul era spart in tokens si adaugat intr-un vector de strings.
+Pentru maparea variabilelor din cod cu valorile lor din hashmap, mai intai cautam
+variabila in linia curenta de cod, numaram de cate ori apare, generam un string nou
+cu dimensiune suficient de mare, iar in final inlocuiam fiecare aparitie cu valoarea
+din hashmap. Numele functiilor: mapVariable, splitString. 
+Da, tema a fost foarte interesanta, numai ca enuntul a fost pe alocuri neclar si existau
+multe corner case-uri neprecizate in enunt si a trebuit sa citesc tot de pe forum pentru
+a afla cum sa le abordez, ceea ce nu a fost tocmai amuzant. Consider ca implementarea
+mea este destul de eficienta, cu toate ca puteam sa folosesc un hashtable in loc de
+hashmap pentru eficienta maxima.
+
+Implementare
+
+Da, am implementat tot, singurul lucru care ar mai lipsi ar fi procesarea if-urilor
+inlantuite. Pentru aceasta ar fi trebuit sa fac o structura de date noua, cu elemente
+de tip "if block", iar fiecare if block continea la randul lui o stiva ce putea stoca
+alte if-blockuri care la fel aveau stiva si tot asa... (asta am facut la lfa dar in python).
+Nu exista functionalitati extra, si imi pica ultimele teste datorita la ce am explicat
+mai sus cu if-blocks. Cea mai dificila parte a fost rezolvarea memory leak-urilor, dar
+sincer mi-a placut tema si acum ma descurc mult mai bine cu pointeri, alocare dinamica,
+lucru cu fisiere, parsare de stringuri, structuri de date eficiente.
+
+Compilare
+
+Bibliotecile folosite sunt stdio, stdlib si string. Executabilul se ruleaza cu
+argumentele specificate din enunt (-D pentru defines, -I pentru directoare,
+-o pentru fisieru lde output si nimic pentru cel de input, doar numele lui).
+
+Bibiografie
+
+Laboratoarele 1 si 2 de SO, laboratoarele si cursurile de SD pentru implementarea
+hashmapului si a listelor + pentru rezolvarea memory leaks. De asemenea, pentru
+implementarea functiilor helper am studiat implementarile de pe GeeksForGeeks.
